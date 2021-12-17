@@ -15,6 +15,6 @@ class SellerUserController extends Controller
      */
     public function index(Seller $seller)
     {
-        return httpReponse($seller->user);
+        return httpResponse($seller->user);
     }
 }

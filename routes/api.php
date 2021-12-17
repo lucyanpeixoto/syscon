@@ -14,16 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::group(['middleware'=> ['auth:sanctum']], function () {
+    Route::get('/orders/export', 'OrderExportController@index');
 
-Route::resource('sellers', SellerController::class);
-Route::resource('sellers.users', SellerUserController::class);
-Route::resource('clients', ClientController::class);
-Route::resource('colors', ColorController::class);
-Route::resource('lots', LotController::class);
-Route::resource('products', ProductController::class);
-Route::resource('products.colors', ProductColorController::class);
-Route::resource('products.lots', ProductLotController::class);
-Route::resource('orders', OrderController::class);
+    Route::resource('sellers', SellerController::class);
+    Route::resource('sellers.users', SellerUserController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('colors', ColorController::class);
+    Route::resource('lots', LotController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('products.colors', ProductColorController::class);
+    Route::resource('products.lots', ProductLotController::class);
+    Route::resource('orders', OrderController::class);
+
+});
+
+Route::post('/auth/login', 'AuthController@login');

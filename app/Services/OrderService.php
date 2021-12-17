@@ -11,7 +11,7 @@ use Illuminate\Validation\Rules;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\OrderResource;
-
+use Illuminate\Support\Facades\Auth;
 
 class OrderService
 {
@@ -21,7 +21,7 @@ class OrderService
             DB::beginTransaction();
 
             $client = Client::find($request->get('client')['id']);
-            $seller = Seller::find($request->get('seller')['id']);
+            $seller = Auth::user()->seller;
             $products = self::formatArrayProductToSaveRelationship($request->get('products'));
 
             $amout = self::getTotalAmout($request->get('products'));
@@ -37,6 +37,9 @@ class OrderService
             DB::commit();
 
             $order->load('products');
+
+            return $order;
+            
         } catch (Exception $e) {
             DB::rollback();
             throw new Exception($e->getMessage());
@@ -49,7 +52,7 @@ class OrderService
             DB::beginTransaction();
 
             $client = Client::find($request->get('client')['id']);
-            $seller = Seller::find($request->get('seller')['id']);
+            $seller = Auth::user()->seller;
             $products = self::formatArrayProductToSaveRelationship($request->get('products'));
 
             $amout = self::getTotalAmout($request->get('products'));

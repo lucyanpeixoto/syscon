@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Order;
+namespace App\Http\Requests\Seller;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Traits\ValidationTrait;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     use ValidationTrait;
     /**
@@ -26,9 +26,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'client.id' => 'required|exists:clients,id',
-            'products.*.id' => 'required|exists:products,id',
-            'products.*.quantity' => 'required|integer',
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:5',
         ];
     }
 }

@@ -27,7 +27,6 @@ class StoreRequest extends FormRequest
     {
         return [
             'client.id' => 'required|exists:clients,id',
-            'seller.id' => 'required|exists:sellers,id',
             'products.*.id' => 'required|exists:products,id',
             'products.*.quantity' => 'required|integer',
         ];

@@ -8,6 +8,7 @@ use App\Models\Seller;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Http\Requests\Seller\StoreRequest;
 
 class SellerController extends Controller
 {
@@ -27,7 +28,7 @@ class SellerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         try {
             $user = UserService::create($request);
