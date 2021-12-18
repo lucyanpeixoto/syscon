@@ -4,7 +4,7 @@ Sistema de Vendas
 
 ## Configurações 
 
-1. Clone your fork into the `~/Sites/laravel` folder, by running the following command *with your username placed into the {username} slot*:
+1. Clone o repositório
     ```bash
     git clone https://github.com/lucyanpeixoto/syscon.git
     ```
